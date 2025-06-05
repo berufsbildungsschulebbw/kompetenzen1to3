@@ -1,305 +1,378 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Digitale Kompetenzen für Lehrpersonen</title>
-  <style>
-    @page {
-      size: 24cm 16cm;
-      margin: 0;
-    }
-    
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      margin: 0;
-      padding: 0;
-      width: 24cm;
-      height: 16cm;
-      overflow: hidden;
-      box-sizing: border-box;
-      color: #333;
-      background-color: #ffffff;
-      font-size: 10pt;
-    }
-    
-    .container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto 1fr auto;
-      gap: 8px;
-      width: 100%;
-      height: 100%;
-      padding: 12px;
-      box-sizing: border-box;
-    }
-    
-    .header {
-      grid-column: 1 / 3;
-      background: linear-gradient(135deg, #8bc34a 0%, #689f38 100%);
-      color: white;
-      padding: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 4px;
-      box-shadow: 0 2px 8px rgba(139, 195, 74, 0.3);
-    }
-    
-    .introduction {
-      grid-column: 1 / 3;
-      background: linear-gradient(135deg, #f1f8e9 0%, #e8f5e8 100%);
-      padding: 8px 12px;
-      border-left: 6px solid #9ccc65;
-      margin-bottom: 8px;
-      font-size: 11pt;
-      box-shadow: 0 1px 4px rgba(156, 204, 101, 0.2);
-    }
-    
-    h1 {
-      margin: 0;
-      font-size: 20pt;
-      text-align: center;
-    }
-    
-    h2 {
-      font-size: 12pt;
-      margin-top: 0;
-      margin-bottom: 8px;
-      color: #fff;
-      padding: 6px 10px;
-      border-radius: 3px;
-    }
-    
-    .section {
-      padding: 0;
-      border-radius: 3px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .section-content {
-      padding: 8px;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-    }
-    
-    p {
-      margin: 0;
-      text-align: justify;
-      font-size: 10pt;
-      line-height: 1.3;
-    }
-    
-    /* Kompetenzbereich Styling */
-    .kompetenzbereiche {
-      grid-column: 1;
-      grid-row: 3;
-    }
-    
-    .kompetenzbereiche h2 {
-      background: linear-gradient(135deg, #689f38 0%, #558b2f 100%);
-      box-shadow: 0 2px 4px rgba(104, 159, 56, 0.3);
-    }
-    
-    .kompetenz-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    
-    .kompetenz-item {
-      margin-bottom: 6px;
-      padding-left: 18px;
-      position: relative;
-      font-size: 10pt;
-    }
-    
-    .kompetenz-item::before {
-      content: "◆";
-      color: #689f38;
-      position: absolute;
-      left: 0;
-    }
-    
-    /* IKT-Konzept Styling */
-    .ikt-konzept {
-      grid-column: 2;
-      grid-row: 3;
-    }
-    
-    .ikt-konzept h2 {
-      background: linear-gradient(135deg, #9ccc65 0%, #8bc34a 100%);
-      box-shadow: 0 2px 4px rgba(156, 204, 101, 0.3);
-    }
-    
-    .ikt-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4px;
-    }
-    
-    .ikt-item {
-      padding-left: 16px;
-      position: relative;
-      font-size: 8pt;
-      margin-bottom: 3px;
-      line-height: 1.2;
-    }
-    
-    .ikt-item::before {
-      content: "▶";
-      color: #9ccc65;
-      position: absolute;
-      left: 0;
-      top: 1px;
-    }
-    
-    .ikt-symbol {
-      font-weight: bold;
-      color: #8bc34a;
-      margin-right: 3px;
-    }
-    
-    /* Pädagogisch-didaktisches Konzept Styling */
-    .paed-konzept {
-      grid-column: 1 / 3;
-      grid-row: 4;
-    }
-    
-    .paed-konzept h2 {
-      background: linear-gradient(135deg, #558b2f 0%, #33691e 100%);
-      box-shadow: 0 2px 4px rgba(85, 139, 47, 0.3);
-    }
-    
-    .paed-konzept-content {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 6px;
-      margin: 0;
-      padding: 0 5px;
-    }
-    
-    .paed-item {
-      text-align: center;
-      position: relative;
-      padding-top: 18px;
-      font-size: 8pt;
-      line-height: 1.1;
-    }
-    
-    .paed-item::before {
-      content: "■";
-      color: #558b2f;
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    
-    .paed-symbol {
-      font-weight: bold;
-      color: #33691e;
-      display: block;
-      margin-bottom: 2px;
-    }
-    
-    .footer {
-      grid-column: 1 / 3;
-      text-align: center;
-      font-size: 9pt;
-      color: #558b2f;
-      padding: 6px;
-      border-top: 2px solid #9ccc65;
-      margin-top: 10px;
-      background: linear-gradient(135deg, #f9fff9 0%, #f1f8e9 100%);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digitale Kompetenzen - Bereiche 1-3 Kompakt</title>
+    <style>
+        @page {
+            size: 24cm 16cm;
+            margin: 0;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            font-size: 7pt;
+            line-height: 1.2;
+            width: 24cm;
+            height: 16cm;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            padding: 8px;
+            height: 100%;
+        }
+        
+        .kompetenzbereich {
+            border-radius: 4px;
+            overflow: auto;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        h2 {
+            color: white;
+            padding: 6px;
+            margin: 0;
+            font-size: 9pt;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .grundkenntnisse h2 { background-color: #3887be; }
+        .anwendung h2 { background-color: #28a745; }
+        .medien h2 { background-color: #e74c3c; }
+        
+        .description {
+            background-color: #f9f9f9;
+            padding: 4px;
+            font-style: italic;
+            font-size: 6pt;
+            border-left: 3px solid;
+            margin-bottom: 3px;
+        }
+        
+        .grundkenntnisse .description { border-left-color: #3887be; }
+        .anwendung .description { border-left-color: #28a745; }
+        .medien .description { border-left-color: #e74c3c; }
+        
+        .content {
+            padding: 4px;
+            background-color: white;
+            flex: 1;
+            overflow-y: auto;
+        }
+        
+        h3 {
+            margin: 6px 0 3px 0;
+            color: #444;
+            background-color: #e9e9e9;
+            padding: 2px 4px;
+            border-radius: 2px;
+            font-size: 7pt;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 6px;
+            font-size: 6pt;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 2px;
+            vertical-align: top;
+        }
+        
+        th {
+            font-weight: bold;
+            text-align: center;
+            color: white;
+        }
+        
+        th:nth-child(1) { width: 55%; text-align: left; }
+        th:nth-child(2) { width: 20%; }
+        th:nth-child(3) { width: 12.5%; }
+        th:nth-child(4) { width: 12.5%; }
+        
+        td:nth-child(1) { width: 55%; }
+        td:nth-child(2) { width: 20%; text-align: left; }
+        td:nth-child(3) { width: 12.5%; text-align: center; }
+        td:nth-child(4) { width: 12.5%; text-align: center; }
+        
+        /* Grundkenntnisse - Blautöne */
+        .grundkenntnisse th:nth-child(1) { background-color: #3887be; }
+        .grundkenntnisse th:nth-child(2) { background-color: #4a94c5; }
+        .grundkenntnisse th:nth-child(3) { background-color: #5ca1cc; }
+        .grundkenntnisse th:nth-child(4) { background-color: #6eaed3; }
+        .grundkenntnisse td:nth-child(1) { background-color: #d6e8f5; }
+        .grundkenntnisse td:nth-child(2) { background-color: #ddedf7; }
+        .grundkenntnisse td:nth-child(3) { background-color: #e4f1f9; }
+        .grundkenntnisse td:nth-child(4) { background-color: #ebf5fb; }
+        
+        /* Anwendung - Grüntöne */
+        .anwendung th:nth-child(1) { background-color: #28a745; }
+        .anwendung th:nth-child(2) { background-color: #3ab158; }
+        .anwendung th:nth-child(3) { background-color: #4cbb6b; }
+        .anwendung th:nth-child(4) { background-color: #5ec57e; }
+        .anwendung td:nth-child(1) { background-color: #d4f5de; }
+        .anwendung td:nth-child(2) { background-color: #dbf7e4; }
+        .anwendung td:nth-child(3) { background-color: #e2f9ea; }
+        .anwendung td:nth-child(4) { background-color: #e9fbf0; }
+        
+        /* Medien - Rottöne */
+        .medien th:nth-child(1) { background-color: #e74c3c; }
+        .medien th:nth-child(2) { background-color: #ea5d50; }
+        .medien th:nth-child(3) { background-color: #ed6e64; }
+        .medien th:nth-child(4) { background-color: #f07f78; }
+        .medien td:nth-child(1) { background-color: #fadbd8; }
+        .medien td:nth-child(2) { background-color: #fbe2df; }
+        .medien td:nth-child(3) { background-color: #fce9e6; }
+        .medien td:nth-child(4) { background-color: #fdf0ed; }
+        
+        .konzept-symbol {
+            font-size: 8pt;
+            font-weight: bold;
+        }
+        
+        .tool-examples {
+            font-size: 5.5pt;
+            font-style: italic;
+            color: #555;
+            line-height: 1.1;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      <h1>DIGITALE KOMPETENZEN FÜR LEHRPERSONEN DER BBW</h1>
-    </div>
-    
-    <div class="introduction">
-      <p>Digitale Kompetenzen für Lehrpersonen in fünf Schlüsselbereichen, verknüpft mit den Zielen des IKT-Konzepts und den Perspektiven des pädagogisch-didaktischen Konzepts der BBW.</p>
-    </div>
-    
-    <div class="section kompetenzbereiche">
-      <h2>KOMPETENZBEREICHE</h2>
-      <div class="section-content">
-        <div class="kompetenz-list">
-          <div class="kompetenz-item">Grundkenntnisse IKT</div>
-          <div class="kompetenz-item">Anwendung im Unterricht</div>
-          <div class="kompetenz-item">Medien- und Informationskompetenz</div>
-          <div class="kompetenz-item">Datenverwaltung und Datensicherheit</div>
-          <div class="kompetenz-item">Kommunikation und Kollaboration</div>
+    <div class="container">
+        <!-- GRUNDKENNTNISSE IKT -->
+        <div class="kompetenzbereich grundkenntnisse">
+            <h2>GRUNDKENNTNISSE IKT</h2>
+            <div class="description">
+                Grundlegende technische Fähigkeiten zum Umgang mit digitalen Geräten, Anwendungen und Systemen als Fundament für digitale Lehr- und Lernszenarien.
+            </div>
+            <div class="content">
+                <h3>1.1 Geräte und Systeme</h3>
+                <table>
+                    <tr>
+                        <th>Erwartete Kompetenz</th>
+                        <th>Beispiel-Tools/Geräte</th>
+                        <th>IKT-Konzept</th>
+                        <th>Päd.-did. Konzept</th>
+                    </tr>
+                    <tr>
+                        <td>Lehrpersonen können Grundeinstellungen an technischen Geräten vornehmen und diese mit anderen Geräten verbinden</td>
+                        <td><div class="tool-examples">Beamer, Tablets, Smartphones, WLAN-Router</div></td>
+                        <td><div class="konzept-symbol">RE 💚</div></td>
+                        <td><div class="konzept-symbol">PDM 🛠️</div></td>
+                    </tr>
+                    <tr>
+                        <td>Lehrpersonen können das eigene Handy mit der Schulumgebung verbinden und Apps für die Schulorganisation und den Unterricht einrichten</td>
+                        <td><div class="tool-examples">Smartphone-Apps, QR-Scanner, Stundenplan-Apps</div></td>
+                        <td><div class="konzept-symbol">KN 🌐</div></td>
+                        <td><div class="konzept-symbol">PDM 🛠️</div></td>
+                    </tr>
+                </table>
+
+                <h3>1.2 Software und Anwendungen</h3>
+                <table>
+                    <tr>
+                        <th>Erwartete Kompetenz</th>
+                        <th>Beispiel-Tools/Geräte</th>
+                        <th>IKT-Konzept</th>
+                        <th>Päd.-did. Konzept</th>
+                    </tr>
+                    <tr>
+                        <td>Lehrpersonen können Funktionen von Office-Programmen gezielt für die Erstellung von Unterrichtsmaterialien einsetzen</td>
+                        <td><div class="tool-examples">Word, PowerPoint, Excel, Google Docs</div></td>
+                        <td><div class="konzept-symbol">MV 🔄</div></td>
+                        <td><div class="konzept-symbol">PDM 🛠️</div></td>
+                    </tr>
+                    <tr>
+                        <td>Lehrpersonen können fachspezifische Software gezielt für Aufgabenstellungen und Demonstrationen im Unterricht einsetzen</td>
+                        <td><div class="tool-examples">GeoGebra, CAD-Software, Simulationen</div></td>
+                        <td><div class="konzept-symbol">HE 💡</div></td>
+                        <td><div class="konzept-symbol">PU 📚</div></td>
+                    </tr>
+                </table>
+
+                <h3>1.3 Cloud und digitale Ressourcen</h3>
+                <table>
+                    <tr>
+                        <th>Erwartete Kompetenz</th>
+                        <th>Beispiel-Tools/Geräte</th>
+                        <th>IKT-Konzept</th>
+                        <th>Päd.-did. Konzept</th>
+                    </tr>
+                    <tr>
+                        <td>Lehrpersonen können Cloud-Dienste für die Erstellung und Verwaltung von Unterrichtsressourcen einsetzen</td>
+                        <td><div class="tool-examples">OneDrive, Google Drive, Dropbox</div></td>
+                        <td><div class="konzept-symbol">KN 🌐</div></td>
+                        <td><div class="konzept-symbol">PDM 🛠️</div></td>
+                    </tr>
+                    <tr>
+                        <td>Lehrpersonen können aus den verfügbaren Ed-Tech-Lizenzen der Schule zielgerichtet auswählen und die jeweiligen Kernfunktionen anwenden</td>
+                        <td><div class="tool-examples">Kahoot, Padlet, H5P, Mentimeter</div></td>
+                        <td><div class="konzept-symbol">MV 🔄</div></td>
+                        <td><div class="konzept-symbol">PDM 🛠️</div></td>
+                    </tr>
+                </table>
+            </div>
         </div>
-      </div>
-    </div>
-    
-    <div class="section ikt-konzept">
-      <h2>ZIELE DES IKT-KONZEPTS</h2>
-      <div class="section-content">
-        <div class="ikt-list">
-          <div class="ikt-item"><span class="ikt-symbol">KM ⚙️</span>Komplexitätsmanagement<br><em>Bewältigung komplexer Probleme</em></div>
-          <div class="ikt-item"><span class="ikt-symbol">DS 🔒</span>Datensicherheit<br><em>Verantwortlicher Umgang im Netz</em></div>
-          <div class="ikt-item"><span class="ikt-symbol">KA 🤝</span>Kollaborative Agilität<br><em>Zusammenarbeit und Agilität</em></div>
-          <div class="ikt-item"><span class="ikt-symbol">MF 🔓</span>Methodenfreiheit<br><em>Flexible methodische Gestaltung</em></div>
-          <div class="ikt-item"><span class="ikt-symbol">MV 🔄</span>Methodenvielfalt<br><em>Vielfältige Lehr- und Lernformen</em></div>
-          <div class="ikt-item"><span class="ikt-symbol">RE 💚</span>Ressourceneffizienz<br><em>Effiziente Ressourcennutzung</em></div>
-          <div class="ikt-item"><span class="ikt-symbol">KN 🌐</span>Konnektivität<br><em>Vernetzung aller Beteiligten</em></div>
-          <div class="ikt-item"><span class="ikt-symbol">HE 💡</span>Heterogenität<br><em>Individuelle Lernarrangements</em></div>
-          <div class="ikt-item"><span class="ikt-symbol">MG 🛠️</span>Mitgestaltung<br><em>Aktive Teilhabe und Gestaltung</em></div>
-          <div class="ikt-item"><span class="ikt-symbol">KR 🔍</span>Kritische Reflexion<br><em>Bewusste Medienreflexion</em></div>
-          <div class="ikt-item"><span class="ikt-symbol">PE 🌱</span>Persönlichkeitsentwicklung<br><em>Kreatives und kritisches Denken</em></div>
+
+        <!-- ANWENDUNG IM UNTERRICHT -->
+        <div class="kompetenzbereich anwendung">
+            <h2>ANWENDUNG IM UNTERRICHT</h2>
+            <div class="description">
+                Praktische Implementierung digitaler Medien in den Unterrichtsprozess. Digitale Technologien didaktisch sinnvoll in allen Phasen des Unterrichts einsetzen.
+            </div>
+            <div class="content">
+                <h3>2.1 Unterrichtsvorbereitung</h3>
+                <table>
+                    <tr>
+                        <th>Erwartete Kompetenz</th>
+                        <th>Beispiel-Tools/Geräte</th>
+                        <th>IKT-Konzept</th>
+                        <th>Päd.-did. Konzept</th>
+                    </tr>
+                    <tr>
+                        <td>Die Lehrperson kann digitale Werkzeuge und KI-Tools einsetzen, um Lernmaterialien zu erstellen</td>
+                        <td><div class="tool-examples">ChatGPT, Canva, Adobe, Quizlet</div></td>
+                        <td><div class="konzept-symbol">RE 💚</div></td>
+                        <td><div class="konzept-symbol">PDM 🛠️</div></td>
+                    </tr>
+                    <tr>
+                        <td>Die Lehrperson entwickelt digitale Lerneinheiten</td>
+                        <td><div class="tool-examples">OpenOlat, Moodle, H5P</div></td>
+                        <td><div class="konzept-symbol">HE 💡</div></td>
+                        <td><div class="konzept-symbol">PL 🎓</div></td>
+                    </tr>
+                </table>
+
+                <h3>2.2 Unterrichtsdurchführung</h3>
+                <table>
+                    <tr>
+                        <th>Erwartete Kompetenz</th>
+                        <th>Beispiel-Tools/Geräte</th>
+                        <th>IKT-Konzept</th>
+                        <th>Päd.-did. Konzept</th>
+                    </tr>
+                    <tr>
+                        <td>Die Lehrperson setzt schulintern lizenzierte Ed-Tech-Tools ein, um das Lernen interaktiver zu machen</td>
+                        <td><div class="tool-examples">Kahoot, Mentimeter, Padlet</div></td>
+                        <td><div class="konzept-symbol">HE 💡</div></td>
+                        <td><div class="konzept-symbol">PL 🎓</div></td>
+                    </tr>
+                    <tr>
+                        <td>Die Lehrperson ermöglicht den Lernenden interaktiv in digitalen Kommunikationstools wie Teams Fragen zu stellen</td>
+                        <td><div class="tool-examples">MS Teams, Chat-Funktionen</div></td>
+                        <td><div class="konzept-symbol">KN 🌐</div></td>
+                        <td><div class="konzept-symbol">PLL 👥</div></td>
+                    </tr>
+                </table>
+
+                <h3>2.3 Leistungserfassung und Feedback</h3>
+                <table>
+                    <tr>
+                        <th>Erwartete Kompetenz</th>
+                        <th>Beispiel-Tools/Geräte</th>
+                        <th>IKT-Konzept</th>
+                        <th>Päd.-did. Konzept</th>
+                    </tr>
+                    <tr>
+                        <td>Die Lehrperson erfasst Rückmeldungen/Feedbacks mit digitalen Hilfsmitteln</td>
+                        <td><div class="tool-examples">Forms, Umfrage-Tools, Feedback-Apps</div></td>
+                        <td><div class="konzept-symbol">MG 🛠️</div></td>
+                        <td><div class="konzept-symbol">PLL 👥</div></td>
+                    </tr>
+                    <tr>
+                        <td>Die Lehrperson erfasst mit summativen und formativen E-Assessments die Leistung der Lernenden</td>
+                        <td><div class="tool-examples">OpenOlat Tests, Socrative, Quizizz</div></td>
+                        <td><div class="konzept-symbol">KM ⚙️</div></td>
+                        <td><div class="konzept-symbol">PL 🎓</div></td>
+                    </tr>
+                </table>
+            </div>
         </div>
-      </div>
-    </div>
-    
-    <div class="section paed-konzept">
-      <h2>PÄDAGOGISCH-DIDAKTISCHES KONZEPT</h2>
-      <div class="section-content">
-        <div class="paed-konzept-content">
-          <div class="paed-item">
-            <span class="paed-symbol">PU 📚</span>
-            Perspektive Unterricht<br>
-            <em>Gestaltung lernförderlicher Unterrichtsprozesse</em>
-          </div>
-          <div class="paed-item">
-            <span class="paed-symbol">PL 🎓</span>
-            Perspektive Lernen<br>
-            <em>Unterstützung individueller Lernprozesse</em>
-          </div>
-          <div class="paed-item">
-            <span class="paed-symbol">PLL 👥</span>
-            Perspektive Lernende und Lehrpersonen<br>
-            <em>Aufbau tragfähiger Lernbeziehungen</em>
-          </div>
-          <div class="paed-item">
-            <span class="paed-symbol">PLK 🏫</span>
-            Perspektive Lehrpersonen und Kollegium<br>
-            <em>Professionelle Zusammenarbeit im Team</em>
-          </div>
-          <div class="paed-item">
-            <span class="paed-symbol">PDM 🛠️</span>
-            Perspektive Didaktik und Methoden<br>
-            <em>Einsatz vielfältiger Lehr- und Lernmethoden</em>
-          </div>
+
+        <!-- MEDIEN- UND INFORMATIONSKOMPETENZ -->
+        <div class="kompetenzbereich medien">
+            <h2>MEDIEN- UND INFORMATIONSKOMPETENZ</h2>
+            <div class="description">
+                Informationen kritisch bewerten, Medien reflektiert nutzen und neue Medieninhalte gezielt erstellen. Lernende bei der Orientierung in der digitalen Informationsflut unterstützen.
+            </div>
+            <div class="content">
+                <h3>3.1 Informationskompetenz</h3>
+                <table>
+                    <tr>
+                        <th>Erwartete Kompetenz</th>
+                        <th>Beispiel-Tools/Geräte</th>
+                        <th>IKT-Konzept</th>
+                        <th>Päd.-did. Konzept</th>
+                    </tr>
+                    <tr>
+                        <td>Die Lehrperson kennt die Funktionsweise von Social Media und mögliche Einsatzorte im Unterricht</td>
+                        <td><div class="tool-examples">Instagram, LinkedIn, YouTube</div></td>
+                        <td><div class="konzept-symbol">KR 🔍</div></td>
+                        <td><div class="konzept-symbol">PL 🎓</div></td>
+                    </tr>
+                    <tr>
+                        <td>Die Lehrperson wendet mit den Lernenden digitale Hilfsmittel und KI für die Suche von Quellen an</td>
+                        <td><div class="tool-examples">Google Scholar, ChatGPT, Perplexity</div></td>
+                        <td><div class="konzept-symbol">HE 💡</div></td>
+                        <td><div class="konzept-symbol">PU 📚</div></td>
+                    </tr>
+                </table>
+
+                <h3>3.2 Medienkompetenz</h3>
+                <table>
+                    <tr>
+                        <th>Erwartete Kompetenz</th>
+                        <th>Beispiel-Tools/Geräte</th>
+                        <th>IKT-Konzept</th>
+                        <th>Päd.-did. Konzept</th>
+                    </tr>
+                    <tr>
+                        <td>Die Lehrperson kann unterschiedliche Medienformate wie Audio, Texte, Videos und KI-Anwendungen im Unterricht einsetzen</td>
+                        <td><div class="tool-examples">YouTube, Podcasts, Lernvideos, KI-Tools</div></td>
+                        <td><div class="konzept-symbol">MV 🔄</div></td>
+                        <td><div class="konzept-symbol">PU 📚</div></td>
+                    </tr>
+                    <tr>
+                        <td>Die Lehrperson kann multimediale Inhalte für ihren Unterricht erstellen (z.B. KI-Bots, Umfragen, Quizzes, Tonbeiträge, Lernvideos)</td>
+                        <td><div class="tool-examples">Canva, OBS Studio, Audacity, Screencast</div></td>
+                        <td><div class="konzept-symbol">MF 🔓</div></td>
+                        <td><div class="konzept-symbol">PDM 🛠️</div></td>
+                    </tr>
+                </table>
+
+                <h3>3.3 Kommunikation mit digitalen Medien</h3>
+                <table>
+                    <tr>
+                        <th>Erwartete Kompetenz</th>
+                        <th>Beispiel-Tools/Geräte</th>
+                        <th>IKT-Konzept</th>
+                        <th>Päd.-did. Konzept</th>
+                    </tr>
+                    <tr>
+                        <td>Die Lehrperson kann im Kollegium und im Unterricht digitale Medien für die Kommunikation nutzen</td>
+                        <td><div class="tool-examples">Teams, E-Mail, WhatsApp Business</div></td>
+                        <td><div class="konzept-symbol">KA 🤝</div></td>
+                        <td><div class="konzept-symbol">PLK 🏫</div></td>
+                    </tr>
+                </table>
+            </div>
         </div>
-      </div>
     </div>
-    
-    <div class="footer">
-      Berufsbildungsschule Winterthur | Format: 24 cm × 16 cm | Konzept Digitale Kompetenzen für Lehrpersonen | Stand: Mai 2025
-    </div>
-  </div>
 </body>
 </html>
