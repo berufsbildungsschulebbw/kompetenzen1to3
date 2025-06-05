@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digitale Kompetenzen für Lehrpersonen</title>
+  <style>
+    @page {
+      size: 24cm 16cm;
+      margin: 0;
+    }
+    
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      padding: 0;
+      width: 24cm;
+      height: 16cm;
+      overflow: hidden;
+      box-sizing: border-box;
+      color: #333;
+      background-color: #ffffff;
+      font-size: 10pt;
+    }
+    
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto 1fr auto;
+      gap: 8px;
+      width: 100%;
+      height: 100%;
+      padding: 12px;
+      box-sizing: border-box;
+    }
+    
+    .header {
+      grid-column: 1 / 3;
+      background: linear-gradient(135deg, #8bc34a 0%, #689f38 100%);
+      color: white;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 4px;
+      box-shadow: 0 2px 8px rgba(139, 195, 74, 0.3);
+    }
+    
+    .introduction {
+      grid-column: 1 / 3;
+      background: linear-gradient(135deg, #f1f8e9 0%, #e8f5e8 100%);
+      padding: 8px 12px;
+      border-left: 6px solid #9ccc65;
+      margin-bottom: 8px;
+      font-size: 11pt;
+      box-shadow: 0 1px 4px rgba(156, 204, 101, 0.2);
+    }
+    
+    h1 {
+      margin: 0;
+      font-size: 20pt;
+      text-align: center;
+    }
+    
+    h2 {
+      font-size: 12pt;
+      margin-top: 0;
+      margin-bottom: 8px;
+      color: #fff;
+      padding: 6px 10px;
+      border-radius: 3px;
+    }
+    
+    .section {
+      padding: 0;
+      border-radius: 3px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .section-content {
+      padding: 8px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    
+    p {
+      margin: 0;
+      text-align: justify;
+      font-size: 10pt;
+      line-height: 1.3;
+    }
+    
+    /* Kompetenzbereich Styling */
+    .kompetenzbereiche {
+      grid-column: 1;
+      grid-row: 3;
+    }
+    
+    .kompetenzbereiche h2 {
+      background: linear-gradient(135deg, #689f38 0%, #558b2f 100%);
+      box-shadow: 0 2px 4px rgba(104, 159, 56, 0.3);
+    }
+    
+    .kompetenz-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .kompetenz-item {
+      margin-bottom: 6px;
+      padding-left: 18px;
+      position: relative;
+      font-size: 10pt;
+    }
+    
+    .kompetenz-item::before {
+      content: "◆";
+      color: #689f38;
+      position: absolute;
+      left: 0;
+    }
+    
+    /* IKT-Konzept Styling */
+    .ikt-konzept {
+      grid-column: 2;
+      grid-row: 3;
+    }
+    
+    .ikt-konzept h2 {
+      background: linear-gradient(135deg, #9ccc65 0%, #8bc34a 100%);
+      box-shadow: 0 2px 4px rgba(156, 204, 101, 0.3);
+    }
+    
+    .ikt-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+    }
+    
+    .ikt-item {
+      padding-left: 16px;
+      position: relative;
+      font-size: 8pt;
+      margin-bottom: 3px;
+      line-height: 1.2;
+    }
+    
+    .ikt-item::before {
+      content: "▶";
+      color: #9ccc65;
+      position: absolute;
+      left: 0;
+      top: 1px;
+    }
+    
+    .ikt-symbol {
+      font-weight: bold;
+      color: #8bc34a;
+      margin-right: 3px;
+    }
+    
+    /* Pädagogisch-didaktisches Konzept Styling */
+    .paed-konzept {
+      grid-column: 1 / 3;
+      grid-row: 4;
+    }
+    
+    .paed-konzept h2 {
+      background: linear-gradient(135deg, #558b2f 0%, #33691e 100%);
+      box-shadow: 0 2px 4px rgba(85, 139, 47, 0.3);
+    }
+    
+    .paed-konzept-content {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+      margin: 0;
+      padding: 0 5px;
+    }
+    
+    .paed-item {
+      text-align: center;
+      position: relative;
+      padding-top: 18px;
+      font-size: 8pt;
+      line-height: 1.1;
+    }
+    
+    .paed-item::before {
+      content: "■";
+      color: #558b2f;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    .paed-symbol {
+      font-weight: bold;
+      color: #33691e;
+      display: block;
+      margin-bottom: 2px;
+    }
+    
+    .footer {
+      grid-column: 1 / 3;
+      text-align: center;
+      font-size: 9pt;
+      color: #558b2f;
+      padding: 6px;
+      border-top: 2px solid #9ccc65;
+      margin-top: 10px;
+      background: linear-gradient(135deg, #f9fff9 0%, #f1f8e9 100%);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>DIGITALE KOMPETENZEN FÜR LEHRPERSONEN DER BBW</h1>
+    </div>
+    
+    <div class="introduction">
+      <p>Digitale Kompetenzen für Lehrpersonen in fünf Schlüsselbereichen, verknüpft mit den Zielen des IKT-Konzepts und den Perspektiven des pädagogisch-didaktischen Konzepts der BBW.</p>
+    </div>
+    
+    <div class="section kompetenzbereiche">
+      <h2>KOMPETENZBEREICHE</h2>
+      <div class="section-content">
+        <div class="kompetenz-list">
+          <div class="kompetenz-item">Grundkenntnisse IKT</div>
+          <div class="kompetenz-item">Anwendung im Unterricht</div>
+          <div class="kompetenz-item">Medien- und Informationskompetenz</div>
+          <div class="kompetenz-item">Datenverwaltung und Datensicherheit</div>
+          <div class="kompetenz-item">Kommunikation und Kollaboration</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section ikt-konzept">
+      <h2>ZIELE DES IKT-KONZEPTS</h2>
+      <div class="section-content">
+        <div class="ikt-list">
+          <div class="ikt-item"><span class="ikt-symbol">KM ⚙️</span>Komplexitätsmanagement<br><em>Bewältigung komplexer Probleme</em></div>
+          <div class="ikt-item"><span class="ikt-symbol">DS 🔒</span>Datensicherheit<br><em>Verantwortlicher Umgang im Netz</em></div>
+          <div class="ikt-item"><span class="ikt-symbol">KA 🤝</span>Kollaborative Agilität<br><em>Zusammenarbeit und Agilität</em></div>
+          <div class="ikt-item"><span class="ikt-symbol">MF 🔓</span>Methodenfreiheit<br><em>Flexible methodische Gestaltung</em></div>
+          <div class="ikt-item"><span class="ikt-symbol">MV 🔄</span>Methodenvielfalt<br><em>Vielfältige Lehr- und Lernformen</em></div>
+          <div class="ikt-item"><span class="ikt-symbol">RE 💚</span>Ressourceneffizienz<br><em>Effiziente Ressourcennutzung</em></div>
+          <div class="ikt-item"><span class="ikt-symbol">KN 🌐</span>Konnektivität<br><em>Vernetzung aller Beteiligten</em></div>
+          <div class="ikt-item"><span class="ikt-symbol">HE 💡</span>Heterogenität<br><em>Individuelle Lernarrangements</em></div>
+          <div class="ikt-item"><span class="ikt-symbol">MG 🛠️</span>Mitgestaltung<br><em>Aktive Teilhabe und Gestaltung</em></div>
+          <div class="ikt-item"><span class="ikt-symbol">KR 🔍</span>Kritische Reflexion<br><em>Bewusste Medienreflexion</em></div>
+          <div class="ikt-item"><span class="ikt-symbol">PE 🌱</span>Persönlichkeitsentwicklung<br><em>Kreatives und kritisches Denken</em></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section paed-konzept">
+      <h2>PÄDAGOGISCH-DIDAKTISCHES KONZEPT</h2>
+      <div class="section-content">
+        <div class="paed-konzept-content">
+          <div class="paed-item">
+            <span class="paed-symbol">PU 📚</span>
+            Perspektive Unterricht<br>
+            <em>Gestaltung lernförderlicher Unterrichtsprozesse</em>
+          </div>
+          <div class="paed-item">
+            <span class="paed-symbol">PL 🎓</span>
+            Perspektive Lernen<br>
+            <em>Unterstützung individueller Lernprozesse</em>
+          </div>
+          <div class="paed-item">
+            <span class="paed-symbol">PLL 👥</span>
+            Perspektive Lernende und Lehrpersonen<br>
+            <em>Aufbau tragfähiger Lernbeziehungen</em>
+          </div>
+          <div class="paed-item">
+            <span class="paed-symbol">PLK 🏫</span>
+            Perspektive Lehrpersonen und Kollegium<br>
+            <em>Professionelle Zusammenarbeit im Team</em>
+          </div>
+          <div class="paed-item">
+            <span class="paed-symbol">PDM 🛠️</span>
+            Perspektive Didaktik und Methoden<br>
+            <em>Einsatz vielfältiger Lehr- und Lernmethoden</em>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer">
+      Berufsbildungsschule Winterthur | Format: 24 cm × 16 cm | Konzept Digitale Kompetenzen für Lehrpersonen | Stand: Mai 2025
+    </div>
+  </div>
+</body>
+</html>
